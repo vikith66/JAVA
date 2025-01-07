@@ -1,0 +1,33 @@
+import java.util.Scanner;
+class Fuel{
+	public static void main(String args[]){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter The Distance in Kilometer : ");
+		int km = sc.nextInt();
+		System.out.println("Enter The Quantity in Litre : ");
+		int li = sc.nextInt();
+		float avgfuel = km / li;
+		System.out.println("Average Fuel Economy : " + avgfuel + "kmpl \n");
+
+		while(true){
+			System.out.println("\n1.Fuel estimation");
+			System.out.println("2.Distance  estimation");
+			System.out.println("Enter your choice(0 to Exit) : ");
+			int ch = sc.nextInt();
+			if(ch == 1){
+				System.out.println("Enter The Distance in km");
+				float dis = sc.nextFloat();
+				float Efuel = dis / avgfuel;
+				System.out.println("Estimated Fuel is = "+ Efuel);
+			} else if(ch == 2){
+				System.out.println("Enter The Fuel in Litre");
+				float fl = sc.nextFloat();
+				float Edis = fl * avgfuel;
+				System.out.println("Estimated distance is = "+ Edis);
+			} else if(ch == 0){
+				System.out.println("Exiting.....");
+				break;
+			}
+		}
+	}
+}
