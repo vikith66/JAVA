@@ -1,0 +1,13 @@
+import java.util.Scanner;
+class TuitionFees{
+	public static void main(String args[]){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter The Tuition Fees : ");
+		float fees = sc.nextFloat();
+		float increase = (fees* 5) / 100;
+		for(int i = 1; i <= 10; i++){
+			fees += increase;
+			System.out.println("The Fees After " + i + " year = " + fees);
+		}
+	}
+}
