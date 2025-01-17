@@ -1,0 +1,18 @@
+import java.util.*;
+class Loan{
+    public static void main(String args[]){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter The Loan Amount : ");
+        int loan = sc.nextInt();
+        System.out.print("Enter The Number Of Years :");
+        int years = sc.nextInt();
+        
+        System.out.println("Interest Rate\tMonthly Payment\tTotal Payment");
+        for(double iRate = 5.0; iRate <= 8.0; iRate += 0.125){
+            double monthlyRate = iRate / 1200;
+            double monthlyPay = (loan * monthlyRate) / (1 - (1 / Math.pow(1 + monthlyRate,years * 12)));
+            double totPay = monthlyPay * years * 12;
+            System.out.printf("%5.3f %% \t\t %10.2f \t\t %10.2f \n",iRate,monthlyPay,totPay);
+        }
+    }
+}
