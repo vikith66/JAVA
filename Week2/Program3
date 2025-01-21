@@ -1,0 +1,35 @@
+import java.util.*;
+class LargeSmall{
+	public static void main(String args[]){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter The Number Of Rows & Columns : ");
+		int rows = sc.nextInt();
+		int cols = sc.nextInt();
+		int[][] arr = new int[rows][cols];
+		System.out.println("Enter The Elements : ");
+		for(int i = 0; i < rows; i++){
+			for(int j = 0; j < cols; j++){
+				arr[i][j] = sc.nextInt();
+			}
+		}
+
+		int large = arr[0][0], small = arr[0][0], x = 0, y = 0, p = 0, q = 0;
+		System.out.println("Array Elements : ");
+		for(int i = 0; i < rows; i++){
+			for(int j = 0; j < cols; j++){
+				System.out.print(arr[i][j] + "  ");
+				if(arr[i][j] > large){
+					large = arr[i][j];
+					x = i; y = j;
+				}
+				if(arr[i][j] < small){
+					small = arr[i][j];
+					p = i; q = j;
+				}
+			}
+			System.out.println();
+		}
+		System.out.println("Largest Element : " + large + " - At Location :"+ x +","+ y);
+		System.out.println("Smallest Element : " + small + " - At Location :"+ p +","+ q);
+	}
+}
