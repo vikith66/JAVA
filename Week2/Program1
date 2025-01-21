@@ -1,0 +1,23 @@
+import java.util.*;
+class Reverse{
+	public static void main(String args[]){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter The Size Of The Array : ");
+		int size = sc.nextInt();
+		int[] arr = new int[size];
+		System.out.println("Enter The Array Elements : ");
+		for(int i = 0; i < size; i++){
+			arr[i] = sc.nextInt();
+		}
+		System.out.println("Reversed Array Elements : ");
+		for(int ele : arr){
+			int digit = 0,reverse = 0, original = ele;
+			while(ele > 0){
+				digit = ele % 10;
+				reverse = reverse * 10 +digit;
+				ele = ele / 10;
+			}
+			System.out.println(original + " - " + reverse);
+		}
+	}
+}
