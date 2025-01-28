@@ -1,0 +1,48 @@
+import java.util.*;
+
+class Box{
+	private int width;
+	private int height;
+	private int depth;
+
+	Box(){
+		this.width = 0;
+		this.height = 0;
+		this.depth = 0;
+		}
+
+	Box(int w,int h,int d){
+	this.width = w;
+	this.height = h;
+	this.depth = d;
+	}
+
+	int calculateVolume(){
+		return this.width * this.height * this.depth;
+	}
+
+	public static void main(String[] args){
+
+			Scanner sc  = new Scanner(System.in);
+			int h,w,d;
+			System.out.println("Enter width");
+			w = sc.nextInt();
+			System.out.println("Enter height");
+			h = sc.nextInt();
+			System.out.println("Enter depth");
+			d = sc.nextInt();
+
+			Box b1 = new Box(w,h,d);
+			System.out.println("voume of the box is : " + b1.calculateVolume());
+
+
+
+		}
+
+
+
+
+
+
+
+}
