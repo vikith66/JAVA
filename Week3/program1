@@ -1,0 +1,79 @@
+import java.util.Scanner;
+
+class Shop {
+    private int itemId;
+    private String itemName;
+    private int qty;
+    private double unit;
+    private double totalBill;
+
+    public void input() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter Item ID: ");
+        itemId = scanner.nextInt();
+        System.out.print("Enter Item Name: ");
+        itemName = scanner.next();
+        System.out.print("Enter Quantity: ");
+        qty = scanner.nextInt();
+        System.out.print("Enter Unit Price: ");
+        unit=scanner.nextDouble();
+
+        totalBill = qty * unit;
+    }
+
+    public double calculateDiscount() {
+        double discount = 0;
+
+        if (totalBill >= 500 && totalBill < 1000) {
+            discount = totalBill * 0.10;
+        } else if (totalBill>=1000 && totalBill<2000) {
+            discount = totalBill * 0.12;
+        } else if (totalBill>=2000) {
+            discount = totalBill * 0.15;
+        }
+
+        return discount;
+    }
+
+    public void display() {
+        double discount =calculateDiscount();
+        double finalAmount=totalBill - discount;
+
+        System.out.println("\n--- Details ---");
+        System.out.println("Item ID: "+itemId);
+        System.out.println("Item Name: "+itemName);
+        System.out.println("Quantity: "+qty);
+        System.out.println("Unit Price: "+unit);
+        System.out.println("Total Bill Amount: "+totalBill);
+		System.out.println("Discount Applied : "+discount);
+		System.out.println("Final Amount : "+finalAmount);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Shop shop = new Shop();
+
+        while (true) {
+            System.out.println("\n--- Shop Menu ---");
+            System.out.println("1. Enter Item Details");
+            System.out.println("2. Display Details");
+            System.out.println("3. Exit");
+            System.out.print("Choose an option : ");
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    shop.input();
+                    break;
+                case 2:
+                    shop.display();
+                    break;
+                case 3:
+                    System.out.println("Exiting the program.");
+                    return;
+                default:
+                    System.out.println("Invalid choice!");
+            }
+        }
+    }
+}
