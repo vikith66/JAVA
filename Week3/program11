@@ -1,0 +1,79 @@
+import java.util.*;
+
+class Shop{
+	private int Item_id;
+	private String Item_name;
+	private int Quantity;
+	private float unitPrice;
+	private float totalBill;
+
+	void CreateRecipt(int id,String name,int qnity,float unitprice){
+		this.Item_id = id;
+		this.Item_name = name;
+		this.Quantity = qnity;
+		this.unitPrice = unitprice;
+		this.totalBill = Quantity * unitPrice;
+	}
+
+	float calclulateDiscount(){
+		if(this.totalBill < 500){
+			return 0f;
+		}
+		else if(this.totalBill < 1000 ){
+
+			return this.totalBill * 0.10f;
+		}else if(this.totalBill < 2000){
+			return this.totalBill * 0.12f;
+		}else{
+			return this.totalBill * 0.15f;
+		}
+
+	}
+
+	void DisplayReceipt(){
+
+		float discount = this.calclulateDiscount();
+
+		System.out.println("\nyou ordered item : " + this.Item_name  + " \nquantity : " + this.Quantity + " \nunit price is : " + this.unitPrice + " \ntotal amount : " + this.totalBill + "\nthe discount applicable is : " + discount + "\n total payable is " + (totalBill-discount) );
+	}
+
+
+	public static void main(String[] args){
+			Scanner sc = new Scanner(System.in);
+			Shop s1 = new Shop();
+
+			while(true){
+
+				System.out.println("Press 1  to add item");
+				System.out.println("Press 2  to display discount");
+				System.out.println("Press 3  to display recipt");
+				System.out.println("Press 0  to exit");
+
+				int op = sc.nextInt();
+
+				if(op==1){
+					System.out.println("Enter id");
+					int id = sc.nextInt();
+					System.out.println("Enter name");
+					String name = sc.next();
+					System.out.println("Enter quantity");
+					int quantity = sc.nextInt();
+					System.out.println("Enter unit price");
+					float unitP = sc.nextFloat();
+					s1.CreateRecipt(id,name,quantity,unitP);
+					}else if(op==2){
+						float discount =  s1.calclulateDiscount();
+						System.out.println("discount aplicable is : " + discount);
+					}else if(op == 3){
+						s1.DisplayReceipt();
+					}else{
+						break;
+					}
+
+				}
+
+		}
+
+
+}
+
