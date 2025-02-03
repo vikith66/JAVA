@@ -6,7 +6,7 @@ class hours{
 		int hour =  sc.nextInt();
 		System.out.println("Enter Hourly Rate : ");
 		int rate =  sc.nextInt();
-		if(hour < 40){
+		if(hour <= 40){
 			int totalPay = hour * rate;
 			System.out.println("Total Pay : "+totalPay);
 		} else if(hour > 40) {
