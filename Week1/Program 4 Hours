@@ -1,20 +1,24 @@
 import java.util.Scanner;
-class hours{
-	public static void main(String args[]){
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter The Number Of Hours Worked : ");
-		int hour =  sc.nextInt();
-		System.out.println("Enter Hourly Rate : ");
-		int rate =  sc.nextInt();
-		if(hour <= 40){
-			int totalPay = hour * rate;
-			System.out.println("Total Pay : "+totalPay);
-		} else if(hour > 40) {
-			int grosspay = hour * rate;
-			int moreHours = hour - 40;
-			int extraPay = (rate / 2) * moreHours;
-			int totalPay = grosspay + extraPay;
-			System.out.println("Total Pay : "+totalPay);
-		}
-	}
+class hours {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter The Number Of Hours Worked: ");
+        double hoursWorked = sc.nextDouble();
+        System.out.println("Enter Hourly Rate: ");
+        double hourlyRate = sc.nextDouble();
+        if (hoursWorked < 0 || hourlyRate < 0) {
+            System.out.println("Invalid input!");
+            return;
+        }
+        if (hoursWorked <= 40) {
+            double totalPay = hoursWorked * hourlyRate;
+            System.out.println("Total Pay : "+totalPay);
+        } else {
+            double regularPay = 40 * hourlyRate;
+            double overtimeHours = hoursWorked - 40;
+            double overtimePay = overtimeHours * hourlyRate * 1.5;
+            double totalPay = regularPay + overtimePay;
+            System.out.println("Total Pay : "+totalPay);
+        }
+    }
 }
