@@ -5,19 +5,24 @@ class Reverse{
 		System.out.println("Enter The Size Of The Array : ");
 		int size = sc.nextInt();
 		int[] arr = new int[size];
+		int[] revArr = new int[size];
 		System.out.println("Enter The Array Elements : ");
 		for(int i = 0;i < size; i++){
 			arr[i] = sc.nextInt();
 		}
 		System.out.println("Reversed Array Elements : ");
-		for(int ele : arr){
-			int digit = 0,reverse = 0,original =ele;
-			while(ele > 0){
-				digit = ele % 10;
-				reverse = reverse *10 +digit;
-				ele = ele / 10;
-			}
-			System.out.println(original+" - " +reverse);
+		for(int i=0; i< size; i++){
+			int num = arr[i];
+            int reverse = 0;  
+            while (num > 0) {
+                int digit = num % 10;
+                reverse = reverse * 10 + digit;
+                num = num / 10;
+            }
+            revArr[i] = reverse; 
+		}
+		for(int i = 0;i < size; i++){
+			System.out.println(arr[i] + " - "+revArr[i]);
 		}
 	}
 }
