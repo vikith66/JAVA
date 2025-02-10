@@ -1,79 +1,78 @@
 import java.util.*;
 
 class Employee{
-
-	private int emp_code;
-	private String emp_name;
-	private float basic;
-	private float hra;
-	private float it;
-	private float pf;
-	private float net_sal = 0f;
-	private float gross_sal;
-
-
-	void addData(int eCode, String eName,int bSal){
-			this.emp_code = eCode;
-			this.emp_name = eName;
-			this.basic = bSal;
-			this.it = 200;
-		}
-	void showDetails(){
-		System.out.println("Name is : " + this.emp_name);
-		System.out.println("Code is : " + this.emp_code);
-		System.out.println("Salary is : " + this.basic);
-		System.out.println("Net Salary is : " + this.net_sal);
-
-		}
-	void calculateNetSal(){
-		this.hra = 0.075f * this.basic;
-		this.gross_sal =  basic + hra;
-		this.pf = 0.12f * this.basic;
-		this.net_sal = this.gross_sal -(this.it+this.pf);
-		}
-
-	float showNetSal(){
-			return this.net_sal;
-		}
-
-		public static void main(String[] args){
-				Scanner sc = new Scanner(System.in);
-				Employee e1 = new Employee();
-
-		Loop:		while(true){
-					int op;
-					System.out.println("Enter 1 to add details");
-					System.out.println("Enter 2 to read details");
-					System.out.println("Enter 3 to calculate Net Sal");
-					System.out.println("Enter 4 to display Net Sal");
-					System.out.println("Enter 5 to exit");
-					op = sc.nextInt();
-
-					switch (op){
-					case 1:
-					int eCode,bSal;
-					String eName;
-					System.out.println("Enter Emp Code");
-					eCode = sc.nextInt();
-					System.out.println("Enter Name");
-					eName=sc.next();
-					System.out.println("Enter Sal");
-					bSal = sc.nextInt();
-					e1.addData(eCode,eName,bSal);
-					 break;
-					case 2: e1.showDetails();
-					 break ;
-					case 3: e1.calculateNetSal();
-					 break;
-					case 4: System.out.println("the net sal is : " + e1.showNetSal());
-					 break;
-					case 5: break Loop;
-					}
-
-				}
-
-			}
+    private int empid;
+    private String empname;
+    private float basicSal;
+    private float hra;
+    private float it;
+    private float pf;
+    private float netSal = 0f;
+    private float gross;
 
 
+    void addData(int eCode, String eName,int bSal){
+        this.empid = eCode;
+        this.empname = eName;
+        this.basicSal = bSal;
+        this.it = 200;
+    }
+    void showDetails(){
+        System.out.println("Name is : " + this.empname);
+        System.out.println("Code is : " + this.empid);
+        System.out.println("Salary is : " + this.basicSal);
+        System.out.println("Net Salary is : " + this.netSal);
 
-	}
+    }
+    void calculateNetSal(){
+        this.hra = 0.075f * this.basicSal;
+        this.gross =  this.basicSal + hra;
+        this.pf = 0.12f * this.basicSal;
+        this.netSal = this.gross -(this.it+this.pf);
+    }
+
+    float showNetSal(){
+        return this.netSal;
+    }
+
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        Employee e1 = new Employee();
+
+        Loop:		while(true){
+            int op;
+            System.out.println("Enter 1 to add details");
+            System.out.println("Enter 2 to read details");
+            System.out.println("Enter 3 to calculate Net Sal");
+            System.out.println("Enter 4 to display Net Sal");
+            System.out.println("Enter 5 to exit");
+            op = sc.nextInt();
+
+            switch (op){
+                case 1:
+                    int eCode,bSal;
+                    String eName;
+                    System.out.println("Enter Emp Code");
+                    eCode = sc.nextInt();
+                    System.out.println("Enter Name");
+                    eName=sc.next();
+                    System.out.println("Enter Sal");
+                    bSal = sc.nextInt();
+                    e1.addData(eCode,eName,bSal);
+                    break;
+                case 2: e1.showDetails();
+                    break ;
+                case 3: e1.calculateNetSal();
+                    break;
+                case 4: System.out.println("the net sal is : " + e1.showNetSal());
+                    break;
+                case 5: break Loop;
+            }
+
+        }
+
+    }
+
+
+
+}
