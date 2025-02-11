@@ -1,0 +1,76 @@
+import java.util.Scanner;
+
+class Customer {
+    private int customerId;
+    private String name;
+    private String phoneNumber;
+    private int billNumber;
+    private int numberOfCalls;
+    private double billAmount;
+
+    public Customer(int customerId, String name, String phoneNumber, int billNumber, int numberOfCalls) {
+        this.customerId = customerId;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.billNumber = billNumber;
+        this.numberOfCalls = numberOfCalls;
+        this.billAmount = 0.0;
+    }
+
+    public void Calculate_bill_amt() {
+        if (numberOfCalls <= 100) {
+            billAmount = 100;
+        } else if (numberOfCalls <= 150) {
+            billAmount = 100 + (numberOfCalls - 100) * 0.60;
+        } else if (numberOfCalls <= 200) {
+            billAmount = 100 + (50 * 0.60) + (numberOfCalls - 150) * 0.50;
+        } else {
+            billAmount = 100 + (50 * 0.60) + (50 * 0.50) + (numberOfCalls - 200) * 0.40;
+        }
+    }
+
+    public void displayDetails() {
+        System.out.println("\nCustomer Details:");
+        System.out.println("Customer ID: " + customerId);
+        System.out.println("Name: " + name);
+        System.out.println("Phone Number: " + phoneNumber);
+        System.out.println("Bill Number: " + billNumber);
+        System.out.println("Number of Calls: " + numberOfCalls);
+        System.out.println("Bill Amount: Rs. " + billAmount);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of customers: ");
+        int n = scanner.nextInt();
+        scanner.nextLine();
+
+        Customer[] customers = new Customer[n];
+
+        for (int i = 0; i < n; i++) {
+            System.out.println("\nEnter details for customer " + (i + 1) + ":");
+            System.out.print("Customer ID: ");
+            int customerId = scanner.nextInt();
+            scanner.nextLine();
+            System.out.print("Name: ");
+            String name = scanner.nextLine();
+            System.out.print("Phone Number: ");
+            String phoneNumber = scanner.nextLine();
+            System.out.print("Bill Number: ");
+            int billNumber = scanner.nextInt();
+            System.out.print("Number of Calls: ");
+            int numberOfCalls = scanner.nextInt();
+
+            customers[i] = new Customer(customerId, name, phoneNumber, billNumber, numberOfCalls);
+            customers[i].Calculate_bill_amt();
+        }
+
+        System.out.println("\n--- Customer Bill Details ---");
+        for (int i = 0; i < n; i++) {
+            customers[i].displayDetails();
+        }
+
+        scanner.close();
+    }
+}
