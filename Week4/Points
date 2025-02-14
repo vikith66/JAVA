@@ -1,0 +1,62 @@
+import java.util.Scanner;
+
+public class Points {
+    private double x;
+    private double y;
+
+    public Points(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public double distance(double x2, double y2) {
+        return Math.sqrt(Math.pow(x2 - this.x, 2) + Math.pow(y2 - this.y, 2));
+    }
+
+    public double distance(Points other) {
+        return Math.sqrt(Math.pow(other.getX() - this.x, 2) + Math.pow(other.getY() - this.y, 2));
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("Enter coordinates for Point P1:");
+        System.out.print("x1: ");
+        double x1 = scanner.nextDouble();
+        System.out.print("y1: ");
+        double y1 = scanner.nextDouble();
+        Points P1 = new Points(x1, y1);
+        
+        System.out.println("\nEnter coordinates for Point P2:");
+        System.out.print("x2: ");
+        double x2 = scanner.nextDouble();
+        System.out.print("y2: ");
+        double y2 = scanner.nextDouble();
+        Points P2 = new Points(x2, y2);
+
+        System.out.println("\nEnter coordinates for Point P3:");
+        System.out.print("x3: ");
+        double x3 = scanner.nextDouble();
+        System.out.print("y3: ");
+        double y3 = scanner.nextDouble();
+        Points P3 = new Points(x3, y3);
+
+        double distP1P2 = P1.distance(P2.getX(), P2.getY());
+        double distP1P3 = P1.distance(P3);
+
+        System.out.printf("\nDistance between P1(%.2f, %.2f) and P2(%.2f, %.2f): %.2f", 
+                         P1.getX(), P1.getY(), P2.getX(), P2.getY(), distP1P2);
+        System.out.printf("\nDistance between P1(%.2f, %.2f) and P3(%.2f, %.2f): %.2f", 
+                         P1.getX(), P1.getY(), P3.getX(), P3.getY(), distP1P3);
+
+        scanner.close();
+    }
+}
