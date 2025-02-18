@@ -1,0 +1,25 @@
+import java.util.*;
+public class LongestPallindrome {
+	public void check(String str){
+		String rev ="";
+		for(int i = str.length() - 1; i >= 0;i--){
+					rev += str.charAt(i);
+		}
+		if(str.equals(rev)){
+			System.out.println(str);
+		}
+	}
+
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter The String : ");//bababa
+		String str = sc.nextLine();
+		LongestPallindrome p = new LongestPallindrome();
+		for(int len = 3; len < str.length() + 1; len++){
+			for(int i = 0; i < str.length() - len + 1; i++){
+				String temp = str.substring(i,i + len);
+				p.check(temp);
+			}
+		}
+	}
+}
