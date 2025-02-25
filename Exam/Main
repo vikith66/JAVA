@@ -1,0 +1,44 @@
+import java.util.*;
+class Filename{
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter The Number Of Files : ");
+		int n = sc.nextInt();
+		String[] str = new String[n];
+		for(int i = 0; i < n; i++){
+			System.out.println("Enter The File " + (i + 1));
+			str[i] = sc.next();
+		}
+
+		int longest = Integer.MIN_VALUE;
+		for(String file:str){
+			if(file.length()>longest){
+				longest = file.length();
+			}
+		}
+		System.out.println(longest);
+
+		String[] res = new String[n];
+		for(int i = 0; i < n; i++){
+			res[i] = prefix_zero(str[i] ,longest);
+		}
+		System.out.println("The Renamed Filenames are :");
+		for(String file:res){
+			System.out.println(file + " ");
+		}
+	}
+	static String prefix_zero(String str, int longest){
+		if(str.length() < longest){
+			int nonzero = longest - str.length();
+			StringBuffer file = new StringBuffer();
+			for(int i = 0; i < nonzero; i++){
+				file.append("0");
+			}
+			file.append(str);
+			String s = new String(file);
+			return s;
+		} else {
+			return str;
+		}
+	}
+}
