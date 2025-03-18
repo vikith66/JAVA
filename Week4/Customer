@@ -1,31 +1,31 @@
-import java.util.Scanner;
+import java.util.*;
 
-class Customer {
+class customer {
     private int customerId;
     private String name;
-    private String phoneNumber;
-    private int billNumber;
-    private int numberOfCalls;
-    private double billAmount;
+    private   String phone;
+    private int billno;
+    private int numCalls;
+    private double billAmt;
 
-    public Customer(int customerId, String name, String phoneNumber, int billNumber, int numberOfCalls) {
+    public customer(int customerId, String name, String phone, int billno, int numCalls) {
         this.customerId = customerId;
         this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.billNumber = billNumber;
-        this.numberOfCalls = numberOfCalls;
-        this.billAmount = 0.0;
+        this.phone = phone;
+        this.billno = billno;
+        this.numCalls = numCalls;
+        this.billAmt = 0.0;
     }
 
-    public void Calculate_bill_amt() {
-        if (numberOfCalls <= 100) {
-            billAmount = 100;
-        } else if (numberOfCalls <= 150) {
-            billAmount = 100 + (numberOfCalls - 100) * 0.60;
-        } else if (numberOfCalls <= 200) {
-            billAmount = 100 + (50 * 0.60) + (numberOfCalls - 150) * 0.50;
+    public void calculate() {
+        if (numCalls <= 100) {
+            billAmt = 100;
+        } else if (numCalls <= 150) {
+            billAmt = 100 + (numCalls - 100) * 0.60;
+        } else if (numCalls <= 200) {
+            billAmt = 100 + (50 * 0.60) + (numCalls - 150) * 0.50;
         } else {
-            billAmount = 100 + (50 * 0.60) + (50 * 0.50) + (numberOfCalls - 200) * 0.40;
+            billAmt = 100 + (50 * 0.60) + (50 * 0.50) + (numCalls - 200) * 0.40;
         }
     }
 
@@ -33,10 +33,10 @@ class Customer {
         System.out.println("\nCustomer Details:");
         System.out.println("Customer ID: " + customerId);
         System.out.println("Name: " + name);
-        System.out.println("Phone Number: " + phoneNumber);
-        System.out.println("Bill Number: " + billNumber);
-        System.out.println("Number of Calls: " + numberOfCalls);
-        System.out.println("Bill Amount: Rs. " + billAmount);
+        System.out.println("Phone Number: " + phone);
+        System.out.println("Bill Number: " + billno);
+        System.out.println("Number of Calls: " + numCalls);
+        System.out.println("Bill Amount: Rs. " + billAmt);
     }
 
     public static void main(String[] args) {
@@ -46,7 +46,7 @@ class Customer {
         int n = scanner.nextInt();
         scanner.nextLine();
 
-        Customer[] customers = new Customer[n];
+        customer[] customers = new customer[n];
 
         for (int i = 0; i < n; i++) {
             System.out.println("\nEnter details for customer " + (i + 1) + ":");
@@ -56,14 +56,14 @@ class Customer {
             System.out.print("Name: ");
             String name = scanner.nextLine();
             System.out.print("Phone Number: ");
-            String phoneNumber = scanner.nextLine();
+            String phone = scanner.nextLine();
             System.out.print("Bill Number: ");
-            int billNumber = scanner.nextInt();
+            int billno = scanner.nextInt();
             System.out.print("Number of Calls: ");
-            int numberOfCalls = scanner.nextInt();
+            int numCalls = scanner.nextInt();
 
-            customers[i] = new Customer(customerId, name, phoneNumber, billNumber, numberOfCalls);
-            customers[i].Calculate_bill_amt();
+            customers[i] = new customer(customerId, name, phone, billno, numCalls);
+            customers[i].calculate();
         }
 
         System.out.println("\n--- Customer Bill Details ---");
