@@ -1,0 +1,22 @@
+import java.util.*;
+class StringOperations{
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter The Sring 1 & 2 : ");
+		String S1 = sc.nextLine();
+		String S2 = sc.nextLine();
+
+		System.out.println("Enter The Two Integer : ");
+		int N1 = sc.nextInt();
+		int N2 = sc.nextInt();
+
+		System.out.println("String 1 In Uppercase : " + S1.toUpperCase());
+		System.out.println("String 2 In Lowercase : " + S2.toLowerCase());
+		if(N1 + N2 < S1.length())
+			System.out.println("Substring Of S1 of Length " + (N1+N2) + " From Position " + N1 + " is :" + S1.substring(N1,N1 + N2));
+		else
+			System.out.println("Index Out Of Bound");
+		System.out.println("String After Inserting S2 To S1 At Position N1 : " + S1.substring(0, N1) + S2 +S1.substring(N1));
+		System.out.println("Appending S2 to S1 : " + S1.concat(S2));
+	}
+}
