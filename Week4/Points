@@ -1,62 +1,54 @@
-import java.util.Scanner;
+import java.util.*;
 
-public class Points {
-    private double x;
-    private double y;
+class Point{
+	int x,y;
+	static int count = 1;
 
-    public Points(double x, double y) {
-        this.x = x;
-        this.y = y;
-    }
+	Point(){
+		this.x =0;
+		this.y=0;
+	}
+	Point(int X,int Y){
+		this.x =X;
+		this.y=Y;
+	}
+	double calc(int x2, int y2){
+		double distance =Math.sqrt(Math.pow(x2 - this.x,2)+Math.pow(y2 - this.y,2));
+		return distance;
+	}
+	double calc(Point p2){
+		double distance = Math.sqrt(Math.pow(p2.x - this.x,2)+Math.pow(p2.y - this.y,2));
+		return distance;
+	}
+	public void display(){
+		System.out.println("Point " + count + " : " + " ("+ this.x +","+ this.y +")");
+		count++;
+	}
+}
 
-    public double getX() {
-        return x;
-    }
+class Points{
+	public static void main(String args[]){
+		int x1,x2,x3,y1,y2,y3;
+		Scanner sc = new Scanner(System.in);
 
-    public double getY() {
-        return y;
-    }
+		System.out.print("Enter coordinates for p1 : ");
+		x1=sc.nextInt();
+		y1=sc.nextInt();
+		System.out.print("Enter coordinates for p2 : ");
+		x2=sc.nextInt();
+		y2=sc.nextInt();
+		System.out.print("Enter coordinates for p3 : ");
+		x3=sc.nextInt();
+		y3=sc.nextInt();
 
-    public double distance(double x2, double y2) {
-        return Math.sqrt(Math.pow(x2 - this.x, 2) + Math.pow(y2 - this.y, 2));
-    }
+		Point p1 = new Point(x1,y1);
+		Point p2 = new Point(x2,y2);
+		Point p3 = new Point(x3,y3);
+		p1.display();
+		p2.display();
+		p3.display();
 
-    public double distance(Points other) {
-        return Math.sqrt(Math.pow(other.getX() - this.x, 2) + Math.pow(other.getY() - this.y, 2));
-    }
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        
-        System.out.println("Enter coordinates for Point P1:");
-        System.out.print("x1: ");
-        double x1 = scanner.nextDouble();
-        System.out.print("y1: ");
-        double y1 = scanner.nextDouble();
-        Points P1 = new Points(x1, y1);
-        
-        System.out.println("\nEnter coordinates for Point P2:");
-        System.out.print("x2: ");
-        double x2 = scanner.nextDouble();
-        System.out.print("y2: ");
-        double y2 = scanner.nextDouble();
-        Points P2 = new Points(x2, y2);
-
-        System.out.println("\nEnter coordinates for Point P3:");
-        System.out.print("x3: ");
-        double x3 = scanner.nextDouble();
-        System.out.print("y3: ");
-        double y3 = scanner.nextDouble();
-        Points P3 = new Points(x3, y3);
-
-        double distP1P2 = P1.distance(P2.getX(), P2.getY());
-        double distP1P3 = P1.distance(P3);
-
-        System.out.printf("\nDistance between P1(%.2f, %.2f) and P2(%.2f, %.2f): %.2f", 
-                         P1.getX(), P1.getY(), P2.getX(), P2.getY(), distP1P2);
-        System.out.printf("\nDistance between P1(%.2f, %.2f) and P3(%.2f, %.2f): %.2f", 
-                         P1.getX(), P1.getY(), P3.getX(), P3.getY(), distP1P3);
-
-        scanner.close();
-    }
+		System.out.printf("Distance between the points p1 & p2 is  %.2f \n" ,p1.calc(p2.x,p2.y));
+		System.out.printf("Distance between the points p1 & p3 is %.2f \n",p3.calc(p1));
+	}
 }
