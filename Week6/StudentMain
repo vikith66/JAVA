@@ -1,0 +1,82 @@
+import java.util.*;
+class Student{
+	private int regNo;
+	private String name;
+	private String course;
+	private String sem;
+
+	void getdata(){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter The Register Number : ");
+		regNo = sc.nextInt();
+		System.out.println("Enter The Student Name : ");
+		name = sc.next();
+		System.out.println("Enter The Student Course : ");
+		course = sc.next();
+		System.out.println("Enter The Semester : ");
+		sem = sc.next();
+	}
+	void display(){
+		System.out.println("Register Number : " + regNo);
+		System.out.println("Student Name : " + name);
+		System.out.println("Student Course : " + course);
+		System.out.println("Current Semester : " + sem);
+	}
+}
+class Exam extends Student{
+	protected int sub1;
+	protected int sub2;
+	protected int sub3;
+
+	void getdata(){
+		super.getdata();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter Mark For Subject 1 : ");
+		sub1 = sc.nextInt();
+		System.out.println("Enter Mark For Subject 2 : ");
+		sub2 = sc.nextInt();
+		System.out.println("Enter Mark For Subject 3 : ");
+		sub3 = sc.nextInt();
+	}
+
+	void display(){
+		super.display();
+		System.out.println("Student Mark1 : " + sub1);
+		System.out.println("Student Mark2 : " + sub2);
+		System.out.println("Student Mark2 : " + sub2);
+	}
+}
+class Result extends Exam{
+	private double totalMarks;
+	private String grade;
+
+	void getdata(){
+		super.getdata();
+	}
+	void display(){
+		super.display();
+		double total = sub1+sub2+sub3;
+		double avg = total/3;
+		System.out.println("Total Marks : " + total);
+		if (avg >= 90) {
+			grade = "A";
+		} else if (avg >= 80) {
+			grade = "B";
+		} else if (avg >= 70) {
+			grade = "C";
+		} else if (avg >= 60) {
+			grade = "D";
+		} else {
+			grade = "'F'";
+        }
+        System.out.println("Grade : " + grade);
+	}
+}
+class StudentMain{
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		Result res = new Result();
+		res.getdata();
+		res.display();
+	}
+}
