@@ -1,0 +1,51 @@
+import java.util.*;
+class BaseBox{
+	double length;
+	double width;
+	double height;
+	BaseBox(double length, double width, double height){
+		this.length=length;
+		this.width=width;
+		this.height=height;
+	}
+}
+class DerivedBox extends BaseBox{
+	double weight;
+	String color;
+	DerivedBox(double length,double width,double height,double weight,String color){
+		super(length,width,height);
+		this.weight = weight;
+		this.color = color;
+	}
+	public double calVolume(double length, double width, double height){
+		double volume  = length*width*height;
+		return volume;
+	}
+	public void displayAll(){
+		System.out.println("Length : " + length);
+		System.out.println("Width : " + width);
+		System.out.println("Height : " + height);
+		System.out.println("Volume : " + calVolume(length,width,height));
+		System.out.println("Weight : " + weight);
+		System.out.println("Color : " + color);
+	}
+}
+class Box{
+	public static void main(String[] args){
+		Scanner sc =new Scanner(System.in);
+		System.out.println("Enter The length : ");
+		double length =sc.nextInt();
+		System.out.println("Enter The width : ");
+		double width =sc.nextInt();
+		System.out.println("Enter The height : ");
+		double height =sc.nextInt();
+		System.out.println("Enter The weight : ");
+		double weight =sc.nextInt();
+		System.out.println("Enter The Color : ");
+		String color =sc.next();
+
+
+		DerivedBox d = new DerivedBox(length,width,height,weight,color);
+		d.displayAll();
+	}
+}
