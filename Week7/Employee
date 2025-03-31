@@ -1,0 +1,52 @@
+import java.util.Scanner;
+
+class Employee implements Cloneable {
+    String name, designation;
+    int id;
+    double salary;
+
+    Employee(String name, int id, String designation, double salary) {
+        this.name = name;
+        this.id = id;
+        this.designation = designation;
+        this.salary = salary;
+    }
+
+    public void display() {
+        System.out.println("Name: " + name);
+        System.out.println("ID: " + id);
+        System.out.println("Designation: " + designation);
+        System.out.println("Salary: " + salary);
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter name: ");
+        String name = sc.nextLine();
+        System.out.print("Enter ID: ");
+        int id = sc.nextInt();
+        sc.nextLine(); 
+        System.out.print("Enter designation: ");
+        String designation = sc.nextLine();
+        System.out.print("Enter salary: ");
+        double salary = sc.nextDouble();
+        
+        Employee emp1 = new Employee(name, id, designation, salary);
+        try {
+            Employee emp2 = (Employee) emp1.clone();
+            System.out.println("\nOriginal Employee:");
+            emp1.display();
+            System.out.println("\nCloned Employee:");
+            emp2.display();
+        } catch (CloneNotSupportedException e) {
+            System.out.println("Cloning not supported.");
+        }
+        
+        sc.close();
+    }
+}
