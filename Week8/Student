@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+class MarkOutOfBounds extends Exception { public MarkOutOfBounds(String msg) { super(msg); } }
+
+public class Student { public static void main(String[] args) { Scanner sc = new Scanner(System.in);
+
+try {
+        System.out.print("Enter Name: ");
+        String name = sc.nextLine();
+        
+        System.out.print("Enter Roll No: ");
+        int rollNo = Integer.parseInt(sc.nextLine());
+        
+        int[] marks = new int[3];
+        for (int i = 0; i < 3; i++) {
+            System.out.print("Enter Marks for Subject " + (i + 1) + ": ");
+            marks[i] = Integer.parseInt(sc.nextLine());
+            
+            if (marks[i] < 0 || marks[i] > 100) {
+                throw new MarkOutOfBounds("Marks should be between 0 and 100.");
+            }
+        }
+        
+        int total = marks[0] + marks[1] + marks[2];
+        double percent = total / 3.0;
+        
+        char grade;
+        if (percent >= 90) grade = 'A';
+        else if (percent >= 80) grade = 'B';
+        else if (percent >= 70) grade = 'C';
+        else if (percent >= 60) grade = 'D';
+        else grade = 'F';
+        
+        System.out.println("\nStudent Details:");
+        System.out.println("Name: " + name);
+        System.out.println("Roll No: " + rollNo);
+        System.out.println("Percentage: " + percent + "%");
+        System.out.println("Grade: " + grade);
+        
+    } catch (NumberFormatException e) {
+        System.out.println("Invalid input! Please enter numeric values for Roll No and Marks.");
+    } catch (MarkOutOfBounds e) {
+        System.out.println("Error: " + e.getMessage());
+    } finally {
+        sc.close();
+    }
+}
+
+}
+
