@@ -19,7 +19,6 @@ class Employee implements Cloneable {
         System.out.println("Salary: " + salary);
     }
 
-    @Override
     protected Object clone() throws CloneNotSupportedException {
         return super.clone();
     }
