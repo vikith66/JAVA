@@ -1,0 +1,66 @@
+import java.util.Scanner;
+
+abstract class Figure {
+    int dim1, dim2;
+    
+    Figure(int dim1, int dim2) {
+        this.dim1 = dim1;
+        this.dim2 = dim2;
+    }
+    
+    abstract double area();
+}
+
+class Rectangle extends Figure {
+    Rectangle(int length, int breadth) {
+        super(length, breadth);
+    }
+    
+    double area() {
+        return dim1 * dim2;
+    }
+}
+
+class Triangle extends Figure {
+    Triangle(int base, int height) {
+        super(base, height);
+    }
+    
+    double area() {
+        return 0.5 * dim1 * dim2;
+    }
+}
+
+class Square extends Figure {
+    Square(int side) {
+        super(side, side);
+    }
+    
+    double area() {
+        return dim1 * dim2;
+    }
+}
+
+public class Shape {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Figure fig;
+        
+        System.out.print("Enter length and breadth of rectangle: ");
+        int length = sc.nextInt();
+        int breadth = sc.nextInt();
+        fig = new Rectangle(length, breadth);
+        System.out.println("Area of Rectangle: " + fig.area());
+        
+        System.out.print("Enter base and height of triangle: ");
+        int base = sc.nextInt();
+        int height = sc.nextInt();
+        fig = new Triangle(base, height);
+        System.out.println("Area of Triangle: " + fig.area());
+        
+        System.out.print("Enter side of square: ");
+        int side = sc.nextInt();
+        fig = new Square(side);
+        System.out.println("Area of Square: " + fig.area());
+    }
+}
