@@ -1,0 +1,55 @@
+package CToF;
+public class CelsToFahr {
+    public double convert(double C) {
+        return (C * 9 / 5) + 32;
+    }
+}
+
+package FToC;
+public class FahrToCels {
+    public double convert(double F) {
+        return (F - 32) * 5 / 9;
+    }
+}
+
+import java.util.Scanner;
+import CToF.CelsToFahr;
+import FToC.FahrToCels;
+
+public class TempConv {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        CelsToFahr cToF = new CelsToFahr();
+        FahrToCels fToC = new FahrToCels();
+        int ch;
+        
+        do {
+            System.out.println("\nMenu:");
+            System.out.println("1. C to F");
+            System.out.println("2. F to C");
+            System.out.println("3. Exit");
+            System.out.print("Enter choice: ");
+            ch = sc.nextInt();
+            
+            switch (ch) {
+                case 1:
+                    System.out.print("Enter C: ");
+                    double c = sc.nextDouble();
+                    System.out.println("F: " + cToF.convert(c));
+                    break;
+                case 2:
+                    System.out.print("Enter F: ");
+                    double f = sc.nextDouble();
+                    System.out.println("C: " + fToC.convert(f));
+                    break;
+                case 3:
+                    System.out.println("Exiting...");
+                    break;
+                default:
+                    System.out.println("Invalid!");
+            }
+        } while (ch != 3);
+        
+        sc.close();
+    }
+}
