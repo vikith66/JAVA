@@ -43,7 +43,7 @@ class Exam extends Student{
 		super.display();
 		System.out.println("Student Mark1 : " + sub1);
 		System.out.println("Student Mark2 : " + sub2);
-		System.out.println("Student Mark2 : " + sub2);
+		System.out.println("Student Mark3 : " + sub3);
 	}
 }
 class Result extends Exam{
