@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.*;
+
+public class FileStringSorter {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String inputFile = "input.txt";
+        String outputFile = "output.txt";
+        List<String> lines = new ArrayList<>();
+
+        try {
+            BufferedWriter inputWriter = new BufferedWriter(new FileWriter(inputFile));
+            System.out.println("Enter strings (enter 0 to stop):");
+            while (true) {
+                String input = sc.nextLine();
+                if (input.equals("0")) break;
+                inputWriter.write(input);
+                inputWriter.newLine();
+            }
+            inputWriter.close();
+
+            BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                lines.add(line);
+            }
+            reader.close();
+
+            Collections.sort(lines);
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
+            for (String str : lines) {
+                writer.write(str);
+                writer.newLine();
+            }
+            writer.close();
+
+            System.out.println("Strings sorted and written to " + outputFile);
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
