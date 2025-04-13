@@ -1,0 +1,71 @@
+import java.util.Scanner;
+import java.util.Vector;
+
+public class VectorOperations {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Vector<Integer> vector = new Vector<>();
+
+        for (int i = 1; i <= 9; i += 2) {
+            vector.add(i);
+        }
+
+        int choice;
+        do {
+            System.out.println("\n--- Menu ---");
+            System.out.println("1. Insert at specified position");
+            System.out.println("2. Insert an element at the end");
+            System.out.println("3. Delete an element");
+            System.out.println("4. Display elements");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice (1-5): ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter element to insert: ");
+                    int element = scanner.nextInt();
+                    System.out.print("Enter position (0-based index): ");
+                    int position = scanner.nextInt();
+                    if (position >= 0 && position <= vector.size()) {
+                        vector.add(position, element);
+                        System.out.println("Element inserted.");
+                    } else {
+                        System.out.println("Invalid position!");
+                    }
+                    break;
+
+                case 2:
+                    System.out.print("Enter element to insert at the end: ");
+                    int endElement = scanner.nextInt();
+                    vector.add(endElement);
+                    System.out.println("Element added at the end.");
+                    break;
+
+                case 3:
+                    System.out.print("Enter element to delete: ");
+                    int deleteElement = scanner.nextInt();
+                    if (vector.remove((Integer) deleteElement)) {
+                        System.out.println("Element deleted.");
+                    } else {
+                        System.out.println("Element not found.");
+                    }
+                    break;
+
+                case 4:
+                    System.out.println("Contents of the vector: " + vector);
+                    break;
+
+                case 5:
+                    System.out.println("Exiting...");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice! Try again.");
+            }
+
+        } while (choice != 5);
+
+        scanner.close();
+    }
+}
