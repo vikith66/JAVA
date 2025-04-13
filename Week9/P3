@@ -1,0 +1,36 @@
+import java.util.*;
+
+public class StringListSort {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<String> stringList = new ArrayList<>();
+        
+        System.out.println("Enter 5 strings:");
+        for (int i = 0; i < 5; i++) {
+            System.out.print("String " + (i + 1) + ": ");
+            String str = scanner.nextLine();
+            stringList.add(str);
+        }
+
+        Collections.sort(stringList);
+
+        System.out.println("\n--- Using Iterator (Forward Only) ---");
+        Iterator<String> iterator = stringList.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+
+        System.out.println("\n--- Using ListIterator (Forward) ---");
+        ListIterator<String> listIterator = stringList.listIterator();
+        while (listIterator.hasNext()) {
+            System.out.println(listIterator.next());
+        }
+
+        System.out.println("\n--- Using ListIterator (Backward) ---");
+        while (listIterator.hasPrevious()) {
+            System.out.println(listIterator.previous());
+        }
+
+        scanner.close();
+    }
+}
