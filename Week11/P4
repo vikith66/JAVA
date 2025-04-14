@@ -1,0 +1,42 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class RupeeToDollarConverter {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Currency Converter - INR to USD");
+        frame.setSize(350, 200);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new GridLayout(4, 2, 10, 10));
+
+        JLabel inrLabel = new JLabel("Amount in Rupees:");
+        JTextField inrField = new JTextField();
+
+        JButton convertButton = new JButton("Convert");
+
+        JLabel usdLabel = new JLabel("Amount in Dollars:");
+        JTextField usdField = new JTextField();
+        usdField.setEditable(false);
+
+        convertButton.addActionListener(e -> {
+            try {
+                double inr = Double.parseDouble(inrField.getText());
+                double conversionRate = 86.10; // 1 INR = 0.012 USD
+                double usd = inr / conversionRate;
+                usdField.setText(String.format("%.2f", usd));
+            } catch (NumberFormatException ex) {
+                usdField.setText("Invalid input");
+            }
+        });
+
+        frame.add(inrLabel);
+        frame.add(inrField);
+        frame.add(new JLabel());
+        frame.add(convertButton);
+        frame.add(usdLabel);
+        frame.add(usdField);
+
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+}
