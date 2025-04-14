@@ -1,0 +1,56 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class LoginApp {
+    public static void main(String[] args) {
+        String correctUsername = "Vikith";
+        String correctPassword = "1234";
+
+        JFrame loginFrame = new JFrame("Login");
+        loginFrame.setSize(300, 200);
+        loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        loginFrame.setLayout(new GridLayout(4, 2, 10, 10));
+
+        JLabel userLabel = new JLabel("Username:");
+        JTextField userField = new JTextField();
+
+        JLabel passLabel = new JLabel("Password:");
+        JPasswordField passField = new JPasswordField();
+
+        JButton loginButton = new JButton("Login");
+
+        loginButton.addActionListener(e -> {
+            String username = userField.getText();
+            String password = new String(passField.getPassword());
+
+            if (username.equals(correctUsername) && password.equals(correctPassword)) {
+                loginFrame.dispose();
+                showWelcomeWindow(username);
+            } else {
+                JOptionPane.showMessageDialog(loginFrame, "Invalid credentials!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+        loginFrame.add(userLabel);
+        loginFrame.add(userField);
+        loginFrame.add(passLabel);
+        loginFrame.add(passField);
+        loginFrame.add(new JLabel());
+        loginFrame.add(loginButton);
+
+        loginFrame.setLocationRelativeTo(null);
+        loginFrame.setVisible(true);
+    }
+
+    public static void showWelcomeWindow(String username) {
+        JFrame welcomeFrame = new JFrame("Welcome");
+        welcomeFrame.setSize(300, 150);
+        welcomeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JLabel welcomeLabel = new JLabel("Welcome, " + username + "!", JLabel.CENTER);
+        welcomeLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        welcomeFrame.add(welcomeLabel);
+        welcomeFrame.setLocationRelativeTo(null);
+        welcomeFrame.setVisible(true);
+    }
+}
