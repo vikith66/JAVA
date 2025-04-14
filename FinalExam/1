@@ -1,0 +1,132 @@
+import java.io.*;
+import java.util.Scanner;
+
+class InvalidString extends Exception {
+    public InvalidString(String message) {
+        super(message);
+    }
+}
+
+class FirstThread extends Thread {
+    public void run() {
+        try {
+            File f1 = new File("input.txt");
+            f1.createNewFile();
+
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Enter a string to write (no special characters allowed):");
+            String s = sc.nextLine();
+
+            if (!s.matches("[a-zA-Z0-9 ]+")) {
+                throw new InvalidString("Special characters are not allowed!");
+            }
+
+            FileWriter fw = new FileWriter(f1);
+            fw.write(s);
+            fw.close();
+
+            System.out.println("Input saved to input.txt.");
+        } catch (InvalidString e) {
+            System.err.println("Custom Exception: " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("IO Error: " + e.getMessage());
+        }
+    }
+}
+
+class SecondThread extends Thread {
+    public void run() {
+        int key = 3;
+        StringBuilder content = new StringBuilder();
+
+        try {
+            FileReader fr = new FileReader("input.txt");
+            int data;
+
+            while ((data = fr.read()) != -1) {
+                char ch = (char) data;
+                ch += key;
+                content.append(ch);
+            }
+            fr.close();
+
+            FileWriter fw = new FileWriter("encrypt.txt");
+            fw.write(content.toString());
+            fw.close();
+
+            System.out.println("Encryption complete. Encrypted data saved to encrypt.txt.");
+        } catch (IOException e) {
+            System.out.println("Error encrypting file: " + e.getMessage());
+        }
+    }
+}
+
+class ThirdThread extends Thread {
+    public void run() {
+        int key = 3;
+        StringBuilder decrypted = new StringBuilder();
+
+        try {
+            FileReader reader = new FileReader("encrypt.txt");
+            int data;
+
+            while ((data = reader.read()) != -1) {
+                char ch = (char) data;
+                ch -= key;
+                decrypted.append(ch);
+            }
+            reader.close();
+
+            FileWriter fw = new FileWriter("decrypt.txt");
+            fw.write(decrypted.toString());
+            fw.close();
+
+            System.out.println("Decryption complete. Decrypted data saved to decrypt.txt.");
+        } catch (IOException e) {
+            System.out.println("Error decrypting file: " + e.getMessage());
+        }
+    }
+}
+
+public class Batch1Java {
+    public static void main(String[] args) {
+        try {
+            FirstThread ft = new FirstThread();
+            ft.start();
+            ft.join();
+
+            SecondThread st = new SecondThread();
+            st.start();
+            st.join();
+
+            ThirdThread tt = new ThirdThread();
+            tt.start();
+            tt.join();
+
+            System.out.println("\n=== File Contents ===");
+
+            System.out.print("input.txt: ");
+            printFile("input.txt");
+
+            System.out.print("encrypt.txt: ");
+            printFile("encrypt.txt");
+
+            System.out.print("decrypt.txt: ");
+            printFile("decrypt.txt");
+
+        } catch (Exception e) {
+            System.out.println("Thread error: " + e.getMessage());
+        }
+    }
+
+    public static void printFile(String fileName) {
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading " + fileName + ": " + e.getMessage());
+        }
+    }
+}
