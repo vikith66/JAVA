@@ -1,0 +1,65 @@
+import java.io.*;
+import java.util.*;
+
+class Ad implements Serializable {
+    int prodId;
+    String prodName;
+    double price;
+    Ad(int prodId,String prodName, double price){
+        this.prodId = prodId;
+        this.prodName = prodName;
+        this.price = price;
+    }
+    public double getprice(){
+        return price;
+    }
+    public void display(){
+        System.out.println("Product Id : " + prodId + "\n" + "Product Name : " + prodName + "\n" + "Product Price : " + price);
+    }
+}
+
+class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Ad> adv = new ArrayList<>();
+        System.out.println("Enter The Number Of Products : ");
+        int n = sc.nextInt();
+        
+        Thread t1 = new Thread(()->{
+            for(int i = 0; i < n ; i++){
+                System.out.println("Enter Product Name : ");
+                String prodName = sc.next();
+                System.out.println("Enter The Product Price : ");
+                double price = sc.nextDouble();
+                adv.add(new Ad(i+1,prodName,price));
+            }
+            try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("Advertise.txt"))){
+                out.writeObject(adv);
+            } catch(IOException e){
+                System.out.println("Error Occured" + e);
+            }
+        });
+        
+        Thread t2 = new Thread(()->{
+            try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("Advertise.txt"))){
+                ArrayList<Ad> output = (ArrayList<Ad>) in.readObject();
+                double total = 0;
+                for(Ad items : output){
+                    items.display();
+                    total += items.getprice();
+                }
+                System.out.println("Total Price " + total);
+            } catch(IOException | ClassNotFoundException e){
+                System.out.println("Error Occured" + e);
+            }
+        });
+        
+        try{
+            t1.start();
+            t1.join();
+        } catch(Exception e){
+            System.out.println("Error Occured");
+        }
+        t2.start();
+    }
+}
